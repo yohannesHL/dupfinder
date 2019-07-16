@@ -12,5 +12,11 @@ setup(
     },
     license='MIT',
     description='Finds duplicate files using sha256 hash comparisons.',
-    long_description='Finds duplicate files using sha256 hash comparisons.'
+    long_description='Finds duplicate files using sha256 hash comparisons.',
+    classifiers=[
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3'
+    ]
 )

@@ -29,7 +29,7 @@ def check_duplicates(filepath, content, seen, duplicates):
 
     return (seen, duplicates)
 
-def traverse(baseDir: str, verbose):
+def traverse(baseDir, verbose):
     for root, dirs, files in os.walk(baseDir, True):
         for filename in files:
             abs_filepath = os.path.join(root, filename)

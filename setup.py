@@ -7,10 +7,11 @@ setup(
     packages=['dupfinder'],
     entry_points={
         'console_scripts': [
-            'dupfinder = dupfinder.main:main'
+            'dupfinder = dupfinder.cli:main'
         ]
     },
     license='MIT',
+    keywords='find duplicate files, duplicate files, remove duplicate files, deduplication'
     description='Finds duplicate files using sha256 hash comparisons.',
     long_description='Finds duplicate files using sha256 hash comparisons.',
     classifiers=[

@@ -20,7 +20,7 @@ Comparison is done via `SHA-256` hashs. Results are output to `duplicates.json` 
 > - Add `-v` or `--verbose` to see verbose logs
 
 
-The output JSON file containes a mapping of content hash keys to list of filepaths (duplicates):
+The output JSON file containes a mapping of content hash keys to a list of filepaths (duplicates):
 ```
 {
     "1ef0ae7bbe4ce6c99ab744fe8c27582178d69c660538ef6a4b201cf5a944e17a": [

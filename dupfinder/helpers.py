@@ -1,6 +1,6 @@
-import os
 import json
 import logging
+from pathlib import Path
 
 logging.basicConfig()
 log = logging.getLogger('dupfinder')
@@ -22,15 +22,16 @@ def traverse(base_dir, verbose):
         ('/base_dir/A/B/C/file.png', <class 'bytes'>)
 
     '''
-    for root, _, files in os.walk(base_dir, True):
-        for filename in files:
-            abs_filepath = os.path.join(root, filename)
-            if verbose:
-                log.debug(abs_filepath)
+    for item in Path(base_dir).glob('**/*'):
+        if not item.is_file():
+            continue
+        abs_filepath = str(item.absolute())
+        if verbose:
+            log.debug(abs_filepath)
 
-            with open(abs_filepath, 'rb') as fs:
-                # TODO: skip very large files?
-                yield (abs_filepath, fs.read(-1))
+        with open(abs_filepath, 'rb') as fs:
+            # TODO: skip very large files?
+            yield (abs_filepath, fs.read(-1))
 
 
 def write_file(filename, data):

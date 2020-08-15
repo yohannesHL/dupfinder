@@ -1,7 +1,7 @@
-import os
 import logging
 import argparse
-from .helpers import log, write_file, traverse
+from pathlib import Path
+from .helpers import log, write_file
 from .dupfinder import find_duplicates, deduplicate_content
 
 
@@ -40,13 +40,13 @@ def main():
         log.debug('Debug mode enabled')
 
     try:
-        base_dir = os.path.abspath(args.directory)
+        base_dir = Path(args.directory).absolute()
         log.info('Checking files in {}'.format(base_dir))
-    
+
         duplicates = find_duplicates(base_dir, args.verbose)
 
         if args.output:
-            result_file_name = os.path.join(os.getcwd(), args.output)
+            result_file_name = Path(args.output).absolute()
 
             log.info('Saving results to "{}"'.format(result_file_name))
 

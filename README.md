@@ -6,9 +6,10 @@ Comparison is done via `SHA-256` hashs. Results are output to `duplicates.json` 
 ![GitHub](https://img.shields.io/github/license/yohannesHL/dupfinder)
 
 ## Setup
-> Pull the source code
-> `cd dupfinder`
-> `pip install .` or `python setup.py install`
+
+> - Pull the source code
+> - `cd dupfinder`
+> - `pip install .` or `python setup.py install`
 
 ## Usage
 

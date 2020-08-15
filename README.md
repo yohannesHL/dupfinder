@@ -44,9 +44,8 @@ The output JSON file containes a mapping of content hash keys to list of filepat
 
 The `--dedup` flag will get rid of duplicate files.
 
-For a directory structure like so:
+For a directory structure like:
 ```
-
 test_files
 ├── A
 │   ├── aws.svg

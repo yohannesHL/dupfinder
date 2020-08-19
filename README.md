@@ -9,7 +9,7 @@ Comparison is done via `SHA-256` hashs. Results are output to `duplicates.json` 
 
 > - Pull the source code
 > - `cd dupfinder`
-> - `pip install .` or `python setup.py install`
+> - `pip install .`
 
 ## Usage
 
@@ -20,7 +20,13 @@ Comparison is done via `SHA-256` hashs. Results are output to `duplicates.json` 
 > - Add `-v` or `--verbose` to see verbose logs
 
 
-The output JSON file containes a mapping of content hash keys to a list of filepaths (duplicates):
+
+
+## Example
+
+`$ dedup basedir`
+
+The output `duplicates.json` file containes a mapping of content hash keys to a list of filepaths (duplicates):
 ```
 {
     "1ef0ae7bbe4ce6c99ab744fe8c27582178d69c660538ef6a4b201cf5a944e17a": [
@@ -40,9 +46,9 @@ The output JSON file containes a mapping of content hash keys to a list of filep
 }
 ```
 
-## Example
+##  Deduplication
 
-The `--dedup` flag will get rid of duplicate files.
+The `--dedup` flag can be used to optionally get rid of duplicate files.
 
 For a directory structure like:
 ```
@@ -65,7 +71,7 @@ test_files
 
 ```
 
-The new directory structure after running `$ dupfinder test_files --dedup`:
+Running `$ dupfinder test_files --dedup` results in:
 ```
 test_files
 ├── A
@@ -80,7 +86,34 @@ test_files
 └── tesla-impact-report-2019.pdf
 ```
 
-By default cleared files will also backed up to `./backup`:
+Comparing with `duplicate.json` output, we can see that the files furthest away form the source are removed:
+```
+{
+    "3a4720542e42a50cd738f6150f54efe8161c1aaed601af07ea4ad3a19d5f18c2": [
+        "/home/coder/project/dupfinder/dupfinder/test_files/aws.svg",
+        "/home/coder/project/dupfinder/dupfinder/test_files/A/aws.svg"
+    ],
+    "33322f02f318cc86556bad5656b6d853d9ac5d16d34de6a6ddff694d83ed0238": [
+        "/home/coder/project/dupfinder/dupfinder/test_files/honeycomb.mp4",
+        "/home/coder/project/dupfinder/dupfinder/test_files/A/honeycomb.mp4"
+    ],
+    "18b041778ebbc596441d2bfa72c91ede09a2cb2dddf4e2c52d83efe2f46595aa": [
+        "/home/coder/project/dupfinder/dupfinder/test_files/tesla-impact-report-2019.pdf",
+        "/home/coder/project/dupfinder/dupfinder/test_files/B/tesla-impact-report-2019.pdf"
+    ],
+    "8f8207e9b9e8d33f0afffd5be46426291c361688ecbac3ab09001c3da1d2d28a": [
+        "/home/coder/project/dupfinder/dupfinder/test_files/Mapping startups.png",
+        "/home/coder/project/dupfinder/dupfinder/test_files/B/Mapping startups.png"
+    ],
+    "b9c8d1b2809eb34f6f57b4747320da0425fe217663d2b6f4d2deb2ba86261861": [
+        "/home/coder/project/dupfinder/dupfinder/test_files/Ketsa_-_13_-_Mission_Ready.mp3",
+        "/home/coder/project/dupfinder/dupfinder/test_files/C/Ketsa_-_13_-_Mission_Ready.mp3"
+    ]
+}
+```
+
+## Backup
+By default removed files are also backed up to `./backup`:
 ```
 backup
 ├── dupfinder_test_files_A_aws.svg
@@ -90,31 +123,8 @@ backup
 └── dupfinder_test_files_C_Ketsa_-_13_-_Mission_Ready.mp3
 ```
 
-Comparing with `duplicate.json` output, we can see that the files furthest away form the source are removed:
-```
-{
-    "3a4720542e42a50cd738f6150f54efe8161c1aaed601af07ea4ad3a19d5f18c2": [
-        "/home/coder/project/yohannesHl/dupfinder/dupfinder/test_files/aws.svg",
-        "/home/coder/project/yohannesHl/dupfinder/dupfinder/test_files/A/aws.svg"
-    ],
-    "33322f02f318cc86556bad5656b6d853d9ac5d16d34de6a6ddff694d83ed0238": [
-        "/home/coder/project/yohannesHl/dupfinder/dupfinder/test_files/honeycomb.mp4",
-        "/home/coder/project/yohannesHl/dupfinder/dupfinder/test_files/A/honeycomb.mp4"
-    ],
-    "18b041778ebbc596441d2bfa72c91ede09a2cb2dddf4e2c52d83efe2f46595aa": [
-        "/home/coder/project/yohannesHl/dupfinder/dupfinder/test_files/tesla-impact-report-2019.pdf",
-        "/home/coder/project/yohannesHl/dupfinder/dupfinder/test_files/B/tesla-impact-report-2019.pdf"
-    ],
-    "8f8207e9b9e8d33f0afffd5be46426291c361688ecbac3ab09001c3da1d2d28a": [
-        "/home/coder/project/yohannesHl/dupfinder/dupfinder/test_files/Mapping startups.png",
-        "/home/coder/project/yohannesHl/dupfinder/dupfinder/test_files/B/Mapping startups.png"
-    ],
-    "b9c8d1b2809eb34f6f57b4747320da0425fe217663d2b6f4d2deb2ba86261861": [
-        "/home/coder/project/yohannesHl/dupfinder/dupfinder/test_files/Ketsa_-_13_-_Mission_Ready.mp3",
-        "/home/coder/project/yohannesHl/dupfinder/dupfinder/test_files/C/Ketsa_-_13_-_Mission_Ready.mp3"
-    ]
-}
-```
+
+
 
 
 ## Auther

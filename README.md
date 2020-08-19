@@ -86,7 +86,7 @@ test_files
 └── tesla-impact-report-2019.pdf
 ```
 
-Comparing with `duplicate.json` output, we can see that the files furthest away form the source are removed:
+Comparing with `duplicate.json` output, we can see that the files furthest away from the base dir are removed:
 ```
 {
     "3a4720542e42a50cd738f6150f54efe8161c1aaed601af07ea4ad3a19d5f18c2": [

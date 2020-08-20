@@ -1,6 +1,6 @@
 # Dupfinder
 
-An tool that helps identify duplicate files with optional deduplication.
+A tool to find and deduplicate duplicate files in a directory.
 Comparison is done via `SHA-256` hashs. Results are output to `duplicates.json` file in the current directory.
 
 ![GitHub](https://img.shields.io/github/license/yohannesHL/dupfinder)

@@ -58,7 +58,7 @@ def main():
 
             if backup_dir:
                 log.debug('removed duplicates will be backed up to "./backup"')
-            deduplicate_content(duplicates['content'], backup_dir)
+            deduplicate_content(duplicates, backup_dir)
 
         log.info('Done!')
     except Exception as exp:
